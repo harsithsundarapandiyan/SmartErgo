@@ -1,140 +1,113 @@
 # SmartErgo
 
-**AI-Assisted Ergonomic Wellness App for Healthier Computer-Use Habits**
+### AI-Assisted Ergonomic Coach for Healthier Computer-Use Habits
 
-SmartErgo is an AI-assisted ergonomic coach designed for students, professionals, programmers, gamers, and other computer users. It helps users become more aware of their posture and computer-use patterns, encourages timely movement breaks, and provides simple guided exercises to promote healthier screen-time habits.
+SmartErgo is an AI-assisted ergonomic wellness application designed for students, professionals, programmers, gamers, and other computer users. It uses real-time posture monitoring and mouse-interaction tracking to increase awareness of computer-use habits and encourage movement breaks and simple exercises.
 
 ## Features
 
-### Real-Time Posture Monitoring
-SmartErgo uses the computer's webcam to monitor posture in real time. MediaPipe detects body landmarks, and the application uses these landmarks to evaluate posture and identify patterns such as slouching.
-
-### Posture Feedback
-The application provides real-time feedback when it detects posture that may need correction, helping users become more aware of how they sit while using a computer.
-
-### Mouse Activity Monitoring
-SmartErgo monitors mouse interaction as an additional measure of computer activity. This helps the application recognize periods of continuous computer use.
-
-### Movement Break Reminders
-The application encourages users to take short movement breaks during extended computer sessions.
-
-### Voice Feedback
-SmartErgo provides optional voice alerts and reminders so that users can receive feedback without continuously watching the application screen.
-
-### Interactive Exercise Coach
-The built-in exercise coach guides users through simple stretches and movements designed for breaks during computer use.
+- **Real-Time Posture Monitoring** — Uses a webcam with MediaPipe and OpenCV to track body landmarks and monitor posture changes.
+- **Personalized Calibration** — Performs a 10-second calibration and compares posture with the user's own starting position.
+- **Mouse Activity Monitoring** — Tracks clicks, mouse movement, and continuous activity.
+- **Movement & Screen-Break Reminders** — Encourages breaks during extended computer use.
+- **Voice Feedback** — Provides optional spoken reminders and exercise instructions.
+- **Interactive Exercise Coach** — Includes animated guidance for Shoulder Rolls, Chin Retraction, Side Stretch, Wrist & Hand Reset, Stand & Move, and Eye & Screen Break.
 
 ## How It Works
 
-SmartErgo combines webcam-based posture monitoring with computer-interaction tracking.
+**Webcam → Body Landmark Detection → Calibration → Posture Analysis → Feedback → Exercise Recommendation**
 
-The basic workflow is:
+SmartErgo uses MediaPipe Pose to detect body landmarks from webcam video. After calibration, the application compares the user's current shoulder, head, and torso positions with their personalized baseline.
 
-**Webcam → Body Landmark Detection → Posture Analysis → Feedback**
-
-1. The webcam captures the user's posture.
-2. MediaPipe detects body landmarks in real time.
-3. SmartErgo calculates posture-related measurements using the detected landmarks.
-4. The application evaluates these measurements using its posture-analysis logic.
-5. Mouse activity is monitored to provide additional information about computer interaction.
-6. SmartErgo provides visual and/or voice feedback when appropriate.
-7. The exercise coach provides guided movements and stretches during breaks.
+Mouse activity is monitored at the same time. Based on posture changes, mouse activity, and computer-use duration, SmartErgo can provide feedback and recommend an appropriate movement or exercise.
 
 ## Technologies Used
 
-- **Python** — Core application development
-- **MediaPipe** — Body landmark detection
-- **OpenCV** — Webcam capture and image processing
-- **Streamlit** — Application interface
+- **Python**
+- **MediaPipe Pose** — Body landmark detection
+- **OpenCV** — Webcam processing, interface, and exercise animations
+- **NumPy** — Numerical operations
 - **pynput** — Mouse activity monitoring
-- **Text-to-Speech** — Voice feedback and reminders
-
-## Requirements
-
-SmartErgo requires:
-
-- Python
-- A computer with a webcam
-- Webcam permission enabled
-- Required Python packages listed in `requirements.txt`
+- **pyttsx3** — Voice feedback
 
 ## Installation
 
-### 1. Clone the Repository
+### 1. Clone the repository
 
-```bash
+```bash id="tcnz6p"
 git clone https://github.com/YOUR-USERNAME/SmartErgo.git
 cd SmartErgo
 ```
 
-### 2. Create a Virtual Environment
+### 2. Create a virtual environment
 
-```bash
+```bash id="b6z91a"
 python -m venv smartergo_env
 ```
 
-### 3. Activate the Virtual Environment
+### 3. Activate the environment
 
 **Windows**
 
-```bash
+```bash id="xgr0bv"
 smartergo_env\Scripts\activate
 ```
 
 **macOS/Linux**
 
-```bash
+```bash id="8frypi"
 source smartergo_env/bin/activate
 ```
 
-### 4. Install Required Packages
+### 4. Install dependencies
 
-```bash
+```bash id="k88wyh"
 pip install -r requirements.txt
 ```
 
-## Running SmartErgo
+## Run SmartErgo
 
-Run the application with:
-
-```bash
-streamlit run smartergo.py
+```bash id="9m2ngv"
+python smartergo.py
 ```
 
-Replace `smartergo.py` with the actual name of the main SmartErgo Python file if it is different.
+Allow webcam access when requested.
 
-When the application opens:
+SmartErgo will begin with a **10-second calibration**. Sit comfortably, face forward, and keep your head and both shoulders visible.
 
-1. Allow webcam access when requested.
-2. Position yourself so that your upper body is visible to the webcam.
-3. Start posture monitoring.
-4. SmartErgo will analyze posture and display feedback.
-5. Enable voice feedback if desired.
-6. Use the exercise coach to follow guided movements and stretches.
-7. Monitor computer-use and mouse-activity feedback during the session.
+After calibration, SmartErgo begins posture and mouse-interaction monitoring.
 
-## Privacy
+## Using the Exercise Coach
 
-SmartErgo uses webcam input for real-time posture analysis. It is designed to process posture information during use rather than function as a video-recording application.
+Click **EXERCISES** to open the exercise library and select an exercise.
 
-Users should enable the appropriate webcam and system permissions before starting SmartErgo.
+SmartErgo can also recommend an exercise based on the activity detected during the session.
+
+### Keyboard Controls
+
+| Key | Action |
+|---|---|
+| **S** | Voice ON/OFF |
+| **X** | Open/close exercises |
+| **E** | Start recommended exercise |
+| **1–6** | Select an exercise |
+| **Space** | Finish exercise |
+| **R** | Reset session |
+| **Q** | Quit SmartErgo |
 
 ## AI Use
 
-ChatGPT was used as a learning and troubleshooting resource during development, including assistance with understanding programming errors, library compatibility, and debugging. AI-generated suggestions were reviewed, modified, tested, and integrated as appropriate by the developer.
-
-SmartErgo uses MediaPipe for real-time body landmark detection. The application's posture evaluation, feature integration, interface, mouse monitoring, feedback system, and exercise-coach workflow were implemented and tested as part of the SmartErgo project.
+SmartErgo uses MediaPipe Pose for computer-vision-based body landmark detection. ChatGPT was also used as a learning and troubleshooting resource during development. AI suggestions were reviewed, modified, tested, and integrated as appropriate by the developer.
 
 ## Developer
 
 **Harsith Sundara Pandiyan**  
 Grade 11  
-Solon High School  
-Solon, Ohio
+Solon High School, Solon, Ohio
 
 ## Disclaimer
 
-SmartErgo is an educational wellness-awareness application. It is not a medical device and is not intended to diagnose, treat, or prevent any medical condition or replace professional medical advice.
+SmartErgo is an educational wellness-awareness project and is not a medical device. It is not intended to diagnose, treat, prevent, or provide medical advice regarding any health condition.
 
 ## License
 
